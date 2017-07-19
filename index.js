@@ -154,9 +154,9 @@ class GitLabDownloader {
   installNPMDependencies() {
     let addon = this;
 
-    return addon.exec(`cd ${addon.outputPath} && yarn install --offline`)
-      .then(() => addon.ui.writeLine('installed npm dependencies'))
-      .catch(() => addon.ui.writeError('unable to install npm dependencies'));
+    return addon.exec(`cd ${addon.outputPath} && yarn install`)
+      .then(() => addon.ui.writeLine('installed npm dependencies via yarn'))
+      .catch(() => addon.ui.writeError('unable to install npm dependencies via yarn'));
   }
 
   exec(command) {
