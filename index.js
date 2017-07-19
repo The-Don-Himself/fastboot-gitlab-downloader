@@ -101,7 +101,6 @@ class GitLabDownloader {
                 let jobID = realDownloadUrl.substring(realDownloadUrl.lastIndexOf("/jobs/") + 6 , realDownloadUrl.lastIndexOf("/artifacts/"));
                 addon.ui.writeLine('Pipeline Build ID : ' + jobID);
 
-                rej(new AppNotFoundError());
                 res();
             }
         })
