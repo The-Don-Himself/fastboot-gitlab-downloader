@@ -1,0 +1,29 @@
+{
+  "name": "fastboot-gitlab-downloader",
+  "version": "0.0.1",
+  "description": "A FastBoot App Server downloader for GitLab build artifacts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/campus-discounts/fastboot-gitlab-downloader.git"
+  },
+  "keywords": [
+    "ember",
+    "fastboot",
+    "downloader",
+    "gitlab"
+  ],
+  "author": "Don Omondi <don.e.omondi@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/campus-discounts/fastboot-gitlab-downloader/issues"
+  },
+  "homepage": "https://github.com/campus-discounts/fastboot-gitlab-downloader#readme",
+  "dependencies": {
+    "fs-promise": "latest",
+    "request": "latest"
+  }
+}
