@@ -1,6 +1,6 @@
 {
   "name": "fastboot-gitlab-downloader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A FastBoot App Server downloader for GitLab build artifacts",
   "main": "index.js",
   "scripts": {
