@@ -33,7 +33,7 @@ class GitLabDownloader {
     let branch = this.branch;
     let job = this.job;
 
-    this.fileUrl = 'https://gitlab.com/' + repo + '/builds/artifacts/'+ branch + '/download?job=' + job;
+    this.fileUrl = 'https://gitlab.com/' + repo + '/-/jobs/artifacts/'+ branch + '/download?job=' + job;
   }
 
   download() {
