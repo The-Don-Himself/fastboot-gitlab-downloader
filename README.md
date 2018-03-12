@@ -4,6 +4,30 @@ This downloader for the [FastBoot App Server][app-server] works with GitLab
 Builds to download and unzip the latest build artifacts of your deployed
 application.
 
+You need to activate GitLab Builds in your repository. Thereafter, create a .gitlab-ci.yml file in the root of the repo which can look something like this
+
+````yaml
+image: node:latest
+
+cache:
+  paths:
+  - node_modules/
+
+build:
+  script:
+   - curl -o- -L https://yarnpkg.com/install.sh | bash
+   - export PATH=$HOME/.yarn/bin:$PATH
+   - yarn global add ember-cli
+   - yarn install --non-interactive
+   - ember build --environment=production
+  artifacts:
+    paths:
+    - dist/
+
+````
+
+This pipeline will build your ember app on each commit and zip then upload the contents of the dist folder as zipped artifacts. It is now ready to be downloaded and served by a Fastboot App Server.
+
 [app-server]: https://github.com/ember-fastboot/fastboot-app-server
 
 To use the downloader, configure it with your GitLab API token and your repo:
