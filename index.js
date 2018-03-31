@@ -5,7 +5,7 @@ const fs    = require('fs');
 const path  = require('path');
 const url   = require('url');
 const fsp   = require('fs-promise');
-const exec  = require('child_process').exec;
+const { exec, execSync } = require('child_process');
 
 function AppNotFoundError(message) {
   let error = new Error(message);
@@ -154,9 +154,23 @@ class GitLabDownloader {
   installNPMDependencies() {
     let addon = this;
 
-    return addon.exec(`cd ${addon.outputPath} && yarn install`)
-      .then(() => addon.ui.writeLine('installed npm dependencies via yarn'))
-      .catch(() => addon.ui.writeError('unable to install npm dependencies via yarn'));
+    let yarnInstalled;
+    try {
+      execSync('yarn bin').toString();
+      yarnInstalled = true;
+    } catch (err) {
+      yarnInstalled = false;
+    }
+
+    if(true === yarnInstalled){
+      return addon.exec(`cd ${addon.outputPath} && yarn install`)
+        .then(() => addon.ui.writeLine('installed dependencies via yarn'))
+        .catch(() => addon.ui.writeError('unable to install dependencies via yarn'));
+    } else {
+      return addon.exec(`cd ${addon.outputPath} && npm install`)
+        .then(() => addon.ui.writeLine('installed dependencies via npm'))
+        .catch(() => addon.ui.writeError('unable to install dependencies via npm'));
+    }
   }
 
   exec(command) {
